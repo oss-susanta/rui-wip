@@ -1,25 +1,13 @@
-import Box from "./Box";
+import jokes from "./Jokes";
+import comics from "./Comics";
+import bored from "./Bored";
 import page from "./PageLayout";
 import grid from "./GridLayout";
 
-const boxes = ((colors) => {
-  const boxes = {};
-  colors.forEach((color) => {
-    boxes[color] = {
-      id: color,
-      name: color,
-      category: "Data",
-      component: () => <Box color={color} />,
-      preview: () => (
-        <div className="w-16 h-8 mx-auto" style={{ background: color }} />
-      ),
-    };
-  });
-  return boxes;
-})(["DarkOrange", "DarkOrchid", "DarkSalmon", "DarkSeaGreen"]);
-
 const widgets = {
-  ...boxes,
+  [jokes.id]: jokes,
+  [bored.id]: bored,
+  [comics.id]: comics,
   [page.id]: page,
   [grid.id]: grid,
 };

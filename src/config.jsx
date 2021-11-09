@@ -17,5 +17,5 @@ export const config = {
 export const Context = createContext();
 
 export default function useConfig() {
-  return useContext(Context);
+  return useContext(Context) || config;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { batch } from "react-redux";
 import { Tabs } from "antd";
 import { BsStack } from "react-icons/bs";
 import EditableText from "../components/EditableText";
@@ -10,6 +9,7 @@ export function PageLayout({
   id,
   activeId,
   layout,
+  tabPosition,
   dispatch,
   addItem,
   removeItem,
@@ -58,7 +58,7 @@ export function PageLayout({
         <Tabs
           type="editable-card"
           activeKey={activeId}
-          tabPosition="bottom"
+          tabPosition={tabPosition}
           className="rui-tabs"
           destroyInactiveTabPane
           onChange={handlePageChanged}
@@ -75,7 +75,7 @@ export function PageLayout({
                   onChange={(value) => handlePageRenamed(page.id, value)}
                 />
               }
-              closable={true}
+              closable={layout.length > 1}
               className="flex-1 min-h-0"
             >
               <DashboardItem id={page.id} />
@@ -97,6 +97,9 @@ const plugin = {
   name: "Page",
   component: PageLayout,
   preview: Preview,
+  beforeCreate(state) {
+    state.tabPosition = "bottom";
+  },
   afterCreate(state, dispatch, actions) {
     const grid = {
       id: uid(),
