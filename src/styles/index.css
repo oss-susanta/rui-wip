@@ -1,0 +1,45 @@
+:root {
+  --rui-c-body: #ffffff;
+  --rui-c-body2: #fafafa;
+  --rui-c-divider: #d9d9d9;
+  --rui-c-primary: #1890ff;
+  --rui-c-glyph: #333333;
+  --rui-c-icon: #333333;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track, rgb(50 50 50 / 10%));
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: var(--scrollbar-thumb, rgb(50 50 50 / 30%));
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-corner, rgb(50 50 50 / 15%));
+}
+
+.gutter.gutter-horizontal {
+  cursor: col-resize;
+}
+.gutter.gutter-vertical {
+  cursor: row-resize;
+}
+
+.rui-grid-layout .react-grid-item.react-grid-placeholder {
+  background: var(--rui-c-primary);
+  opacity: 0.5;
+}
+.rui-grid-layout .react-grid-item > .react-resizable-handle {
+  background: none;
+}
+.rui-grid-layout .react-grid-item > .react-resizable-handle::after {
+  border: 0;
+}

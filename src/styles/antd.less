@@ -1,0 +1,37 @@
+@import "antd/lib/style/themes/default.less";
+@import "antd/dist/antd.less";
+
+@font-family: "Overpass", sans-serif;
+@code-family: "DM Mono", monospace;
+
+@font-size-base: 14px; // major text font size
+@border-radius-base: 2px; // major border radius
+
+@primary-color: #1890ff; // primary color for all components
+@link-color: #1890ff; // link color
+@success-color: #52c41a; // success state color
+@warning-color: #faad14; // warning state color
+@error-color: #f5222d; // error state color
+@heading-color: #000000; // heading text color
+@text-color: #333333; // major text color
+@text-color-secondary: #808080; // secondary text color
+@disabled-color: #cccccc; // disable state color
+@border-color-base: #d9d9d9;
+
+.ant-tooltip-arrow {
+  display: none;
+}
+
+.rui-card .ant-card-head {
+  flex: none;
+}
+.rui-card .ant-card-body {
+  flex: 1;
+  overflow: auto;
+}
+
+.rui-tabs,
+.rui-tabs .ant-tabs-content-holder,
+.rui-tabs .ant-tabs-content {
+  height: 100%;
+}
