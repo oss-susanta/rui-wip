@@ -1,6 +1,6 @@
 import React from "react";
-import { Jokes } from "../widgets/Jokes";
+import { University } from "../widgets/University";
 
 export default function Playground() {
-  return <Jokes />;
+  return <University />;
 }
