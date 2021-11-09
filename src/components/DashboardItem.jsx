@@ -4,7 +4,7 @@ import EmptyDashboardItem from "./EmptyDashboardItem";
 import useConfig from "../config";
 import { actions, selectors } from "../redux/dashboardSlice";
 
-export default function DashboardItem({ id: propId }) {
+export default function DashboardItem({ id: propId, parentId }) {
   const config = useConfig();
   const dispatch = useDispatch();
   const startId = useSelector(selectors.startId);
@@ -24,6 +24,7 @@ export default function DashboardItem({ id: propId }) {
   return (
     <widget.component
       {...dashboardItem}
+      parentId={parentId}
       dispatch={dispatch}
       updateItem={actions.updateItem}
       addItem={actions.addItem}

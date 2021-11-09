@@ -1,9 +1,20 @@
 import React from "react";
+import clsx from "clsx";
 import axios from "redaxios";
 import { useQuery } from "react-query";
 import { Button, Result } from "antd";
 import { BsArrowRight } from "react-icons/bs";
+import { FiX } from "react-icons/fi";
 import Loading from "../components/Loading";
+import MoreButton from "../components/MoreButton";
+
+const moreOptions = [
+  {
+    id: "removeItem",
+    text: "Remove",
+    icon: FiX,
+  },
+];
 
 const PROXY_API = "https://thingproxy.freeboard.io/fetch";
 const API_BASE =
@@ -14,12 +25,19 @@ function fetchJokes() {
     .then((response) => response.data);
 }
 
-export function Jokes({ id }) {
+export function Jokes({ id, parentId, dispatch, removeItem }) {
   const query = useQuery(["joke", id], fetchJokes);
+
+  const handleCommand = (commandId) => {
+    if (commandId === "removeItem") {
+      dispatch(removeItem({ id, parentId }));
+    }
+  };
 
   if (query.status === "loading" || query.isFetching) {
     return <Loading text="Fetching next joke..." />;
   }
+
   if (query.status === "error") {
     return (
       <Result
@@ -34,8 +52,15 @@ export function Jokes({ id }) {
       />
     );
   }
+
   return (
-    <div className="w-full h-full grid place-items-center overflow-auto bg-body shadow">
+    <div
+      className={clsx([
+        "w-full h-full overflow-auto",
+        "grid place-items-center relative",
+        "bg-body shadow group",
+      ])}
+    >
       <div>
         <div className="text-center mx-4 my-2">{query.data?.joke}</div>
         <div className="flex justify-center">
@@ -47,6 +72,9 @@ export function Jokes({ id }) {
             onClick={() => query.refetch()}
           />
         </div>
+      </div>
+      <div className="absolute opacity-0 group-hover:opacity-100 right-2 top-2">
+        <MoreButton options={moreOptions} onCommand={handleCommand} />
       </div>
     </div>
   );

@@ -80,7 +80,7 @@ export function GridLayout({ id, layout, dispatch, updateItem, addItem }) {
           {layout.map((item) => (
             <div key={item.id} className="rui-grid-layout-item">
               {item.id !== "__dropping-elem__" && (
-                <DashboardItem id={item.id} />
+                <DashboardItem id={item.id} parentId={id} />
               )}
             </div>
           ))}

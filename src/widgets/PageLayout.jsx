@@ -41,7 +41,7 @@ export function PageLayout({
     } else if (actionType === "remove") {
       const nextLayout = layout.filter((page) => page.id !== pageId);
       const nextActiveId = activeId === pageId ? nextLayout[0]?.id : activeId;
-      dispatch(removeItem(pageId));
+      dispatch(removeItem({ id: pageId, parentId: id }));
       dispatch(
         updateItem({
           id,
@@ -78,7 +78,7 @@ export function PageLayout({
               closable={layout.length > 1}
               className="flex-1 min-h-0"
             >
-              <DashboardItem id={page.id} />
+              <DashboardItem id={page.id} parentId={id} />
             </Tabs.TabPane>
           ))}
         </Tabs>

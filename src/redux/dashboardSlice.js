@@ -14,17 +14,25 @@ export const { actions, reducer } = createSlice({
       }
     },
     removeItem(state, { payload }) {
-      function remove(id) {
+      function remove(id, parentId) {
         const item = state.content[id];
         if (item == null) return;
         if (item.layout) {
           for (const child of item.layout) {
-            remove(child.id);
+            remove(child.id, id);
           }
         }
+        const parentItem = state.content[parentId];
+        if (parentItem && parentItem.layout) {
+          const index = parentItem.layout.findIndex((child) => child.id === id);
+          if (index !== -1) {
+            parentItem.layout.splice(index, 1);
+          }
+        }
+
         delete state.content[item.id];
       }
-      remove(payload);
+      remove(payload.id, payload.parentId);
     },
     updateItem(state, { payload }) {
       Object.assign(state.content[payload.id], payload);
