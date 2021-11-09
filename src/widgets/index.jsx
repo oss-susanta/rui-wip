@@ -1,4 +1,5 @@
 import Box from "./Box";
+import page from "./PageLayout";
 import grid from "./GridLayout";
 
 const boxes = ((colors) => {
@@ -15,10 +16,11 @@ const boxes = ((colors) => {
     };
   });
   return boxes;
-})(["DarkOrange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSeaGreen"]);
+})(["DarkOrange", "DarkOrchid", "DarkSalmon", "DarkSeaGreen"]);
 
 const widgets = {
   ...boxes,
+  [page.id]: page,
   [grid.id]: grid,
 };
 

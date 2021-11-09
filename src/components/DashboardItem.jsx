@@ -14,7 +14,10 @@ export default function DashboardItem({ id: propId }) {
 
   if (!widget?.component) {
     return (
-      <EmptyDashboardItem onAdd={(item) => dispatch(actions.addItem(item))} />
+      <EmptyDashboardItem
+        description="Empty dashboard. Please drag and drop widgets."
+        onAdd={(item) => dispatch(actions.addItem(item))}
+      />
     );
   }
 

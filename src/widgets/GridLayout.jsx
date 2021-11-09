@@ -86,7 +86,10 @@ export function GridLayout({ id, layout, dispatch, updateItem, addItem }) {
           ))}
         </ReactGridLayout>
       ) : (
-        <EmptyDashboardItem onAdd={handleCreate} />
+        <EmptyDashboardItem
+          description="Empty Grid. Please drag and drop widgets."
+          onAdd={handleCreate}
+        />
       )}
     </div>
   );
