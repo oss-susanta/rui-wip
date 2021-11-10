@@ -87,6 +87,12 @@ const plugin = {
   category: "Data",
   component: University,
   preview: Preview,
+  moreOptions: ["remove-item"],
+  beforeCreate(state) {
+    state.showBorder = true;
+    state.showHeader = true;
+    state.title = "University";
+  },
 };
 
 export default plugin;

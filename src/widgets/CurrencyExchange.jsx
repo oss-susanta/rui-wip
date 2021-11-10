@@ -90,6 +90,12 @@ const plugin = {
   category: "Data",
   component: CurrencyExchange,
   preview: Preview,
+  moreOptions: ["remove-item"],
+  beforeCreate(state) {
+    state.showBorder = true;
+    state.showHeader = true;
+    state.title = "Currency Exchange";
+  },
 };
 
 export default plugin;

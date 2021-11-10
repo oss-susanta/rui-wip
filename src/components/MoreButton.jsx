@@ -2,11 +2,15 @@ import React from "react";
 import { Dropdown, Menu } from "antd";
 import { RiMoreLine } from "react-icons/ri";
 import IconButton from "./IconButton";
+import useConfig from "../config";
 
 const trigger = ["click"];
 
-function renderMenuItems(options) {
-  return options.map((option) => {
+function renderMenuItems(options, actions) {
+  return options.map((optionOrId) => {
+    const option =
+      typeof optionOrId === "string" ? actions[optionOrId] : optionOrId;
+    if (option == null) return null;
     if (option.type === "divider") {
       return <Menu.Divider key={option.id} />;
     }
@@ -27,15 +31,19 @@ function renderMenuItems(options) {
     );
   });
 }
-function renderMenu(options, onCommand) {
-  return <Menu onClick={onCommand}>{renderMenuItems(options)}</Menu>;
+function renderMenu(options, actions, onCommand) {
+  const handleCommand = ({ key }) => {
+    const action = actions[key] || options.find((option) => option.id === key);
+    onCommand(action);
+  };
+  return (
+    <Menu onClick={handleCommand}>{renderMenuItems(options, actions)}</Menu>
+  );
 }
 
 export default function MoreButton({ options, onCommand }) {
-  const handleCommand = ({ key }) => {
-    onCommand(key);
-  };
-  const overlay = renderMenu(options, handleCommand);
+  const { actions } = useConfig();
+  const overlay = renderMenu(options, actions, onCommand);
   return (
     <Dropdown overlay={overlay} trigger={trigger}>
       <IconButton>

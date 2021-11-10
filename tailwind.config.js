@@ -8,6 +8,7 @@ module.exports = {
         body: "var(--rui-c-body)",
         body2: "var(--rui-c-body2)",
         divider: "var(--rui-c-divider)",
+        divider2: "var(--rui-c-divider2)",
         glyph: "var(--rui-c-glyph)",
         icon: "var(--rui-c-icon)",
         primary: "var(--rui-c-primary)",

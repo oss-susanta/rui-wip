@@ -1,7 +1,9 @@
 import { createContext, useContext } from "react";
+import actions from "./actions";
 import widgets from "./widgets";
 
 export const config = {
+  actions,
   widgets,
   shortcuts: [
     [["mod", "n"], "newDashboard"],
