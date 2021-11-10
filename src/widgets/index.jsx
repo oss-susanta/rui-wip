@@ -3,8 +3,9 @@ import comics from "./Comics";
 import bored from "./Bored";
 import currency from "./CurrencyExchange";
 import university from "./University";
-import page from "./PageLayout";
+import collapse from "./CollapseLayout";
 import grid from "./GridLayout";
+import page from "./PageLayout";
 
 const widgets = {
   [currency.id]: currency,
@@ -14,6 +15,7 @@ const widgets = {
   [comics.id]: comics,
   [page.id]: page,
   [grid.id]: grid,
+  [collapse.id]: collapse,
 };
 
 export default widgets;

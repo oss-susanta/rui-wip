@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs } from "antd";
 import { BsStack } from "react-icons/bs";
-import EditableText from "../components/EditableText";
+import { RenameText } from "../components/Rename";
 import DashboardItem from "../components/DashboardItem";
 import uid from "../utils/uid";
 
@@ -46,7 +46,7 @@ export function PageLayout({
         updateItem({
           id,
           layout: nextLayout,
-          currentItem: nextActiveId,
+          activeId: nextActiveId,
         })
       );
     }
@@ -68,7 +68,7 @@ export function PageLayout({
             <Tabs.TabPane
               key={page.id}
               tab={
-                <EditableText
+                <RenameText
                   className="select-none"
                   title="Reanme Page"
                   value={page.name}

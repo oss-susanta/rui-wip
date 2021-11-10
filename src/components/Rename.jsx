@@ -27,15 +27,23 @@ function FocusableInput({ value, onChange, onCommit }) {
   );
 }
 
-export default function EditableText({ title, value, onChange, ...props }) {
+export function RenameModal({ title, value, onOk, onCancel }) {
   const ref = useRef(value);
-  const [visible, toggle] = useSwitch(false);
-
   const handleChange = (event) => (ref.current = event.target.value);
-  const handleCommit = () => {
-    toggle.off();
-    onChange(ref.current);
-  };
+  const handleOk = () => onOk(ref.current);
+  return (
+    <Modal visible title={title} onOk={handleOk} onCancel={onCancel}>
+      <FocusableInput
+        value={value}
+        onChange={handleChange}
+        onCommit={handleOk}
+      />
+    </Modal>
+  );
+}
+
+export function RenameText({ title, value, onChange, ...props }) {
+  const [visible, toggle] = useSwitch(false);
 
   return (
     <>
@@ -43,13 +51,15 @@ export default function EditableText({ title, value, onChange, ...props }) {
         {value}
       </div>
       {visible && (
-        <Modal visible title={title} onOk={handleCommit} onCancel={toggle.off}>
-          <FocusableInput
-            value={value}
-            onChange={handleChange}
-            onCommit={handleCommit}
-          />
-        </Modal>
+        <RenameModal
+          title={title}
+          value={value}
+          onOk={(next) => {
+            onChange(next);
+            toggle.off();
+          }}
+          onCancel={toggle.off}
+        />
       )}
     </>
   );
